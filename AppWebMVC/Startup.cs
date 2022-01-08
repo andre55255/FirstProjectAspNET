@@ -9,6 +9,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using AppWebMVC.Data;
+using AppWebMVC.Services;
 
 namespace AppWebMVC {
     public class Startup {
@@ -28,12 +31,24 @@ namespace AppWebMVC {
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<AppWebMVCContext>(options =>
+                    options.UseMySql(
+                        Configuration.GetConnectionString("AppWebMVCContext"),
+                        builder =>
+                        builder.MigrationsAssembly("AppWebMVC"))
+                    );
+
+            services.AddScoped<SeedingService>();
+            services.AddScoped<SellerService>();
+            services.AddScoped<DepartmentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedingService seedingService) {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
+                seedingService.Seed();
             }
             else {
                 app.UseExceptionHandler("/Home/Error");

@@ -1,0 +1,27 @@
+﻿@model AppWebMVC.Models.Seller
+
+@{
+    ViewData["Title"] = "Remover";
+}
+<div class="row">
+    <h2>@ViewData["Title"]</h2>
+
+    <h4>Deseja realmente excluir este vendedor?</h4>
+
+    <dl class="dl-horizontal">
+        <dt>Nome:</dt>
+        <dd>@Html.DisplayFor(model => model.Name)</dd>
+        <dt>Email:</dt>
+        <dd>@Html.DisplayFor(model => model.Email)</dd>
+        <dt>Data de aniversário:</dt>
+        <dd>@Html.DisplayFor(model => model.BirthDate)</dd> 
+        <dt>Salário base:</dt>
+        <dd>@Html.DisplayFor(model => model.BaseSalary)</dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Confirmar</button>|
+        <a asp-action="Index">Retornar para a lista</a>
+    </form>
+</div>

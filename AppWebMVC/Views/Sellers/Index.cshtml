@@ -1,0 +1,47 @@
+﻿@model List<AppWebMVC.Models.Seller>
+
+@{
+    ViewData["Title"] = "Vendedores";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-default">Criar vendedor</a>
+</p>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Data de aniversário</th>
+            <th>Salário base R$</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Seller item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(ModelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(ModelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(ModelItem => item.BirthDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(ModelItem => item.BaseSalary)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Remover</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

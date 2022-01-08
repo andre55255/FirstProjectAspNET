@@ -1,4 +1,4 @@
-﻿using AppWebMVC.Models;
+﻿using AppWebMVC.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,13 +13,13 @@ namespace AppWebMVC.Controllers {
         }
 
         public IActionResult About() {
-            ViewData["Message"] = "Your application description page.";
-
+            ViewData["Message"] = "Uma aplicação de vendas";
+            ViewData["Dev"] = "André Luiz Barros";
             return View();
         }
 
         public IActionResult Contact() {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Página de contato";
 
             return View();
         }
