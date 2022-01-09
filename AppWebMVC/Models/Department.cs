@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
 using System;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
 
 namespace AppWebMVC.Models {
     public class Department {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Nome é obrigatório")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "O nome do departamento deve conter de 3 a 100 caracteres")]
         public string Name { get; set; }
         public ICollection<Seller> Sellers { get; set; } = new List<Seller>();
 

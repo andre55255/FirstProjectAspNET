@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Collections.Generic;
 using AppWebMVC.Models;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppWebMVC.Services
 {
@@ -14,9 +16,9 @@ namespace AppWebMVC.Services
             _context = context;
         }
 
-        public List<Department> FindAll()
+        public async Task<List<Department>> FindAllAsync()
         {
-            return _context.Department.OrderBy(dep => dep.Name).ToList();
+            return await _context.Department.OrderBy(dep => dep.Name).ToListAsync();
         }
     }
 }
